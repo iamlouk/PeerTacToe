@@ -1,0 +1,129 @@
+:root {
+    --sidebar-border-color: rgb(125, 125, 125);
+}
+html, body {
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(33, 33, 33);
+    color: rgb(230, 230, 230);
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.left-sidebar, .right-sidebar {
+    box-sizing: border-box;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    font-family: monospace;
+}
+
+.some-id {
+    color: rgb(148, 221, 0);
+}
+.some-color {
+    width: 1em;
+    height: 1em;
+    border-radius: 0.5em;
+    background-color: white;
+    display: inline-block;
+    font-size: 0.5;
+    color: rgb(50, 50, 50);
+    border: 1px solid rgb(0, 0, 0);
+}
+
+
+
+/* ---- Left ---- */
+
+.left-sidebar {
+    left: 0px;
+    width: 200px;
+    border-right: 2px solid var(--sidebar-border-color);
+}
+.left-sidebar .header {
+    box-sizing: border-box;
+    padding: 5px;
+    background-color: rgb(45, 45, 45);
+    border-bottom: 2px solid var(--sidebar-border-color);
+}
+.left-sidebar .header span.opponent {
+    padding-left: 10px;
+}
+.left-sidebar h2 {
+    padding: 0px;
+    margin: 0px;
+    font-size: 15px;
+}
+.left-sidebar h1 {
+    padding: 10px;
+    margin: 0px;
+    font-size: 25px;
+    box-sizing: border-box;
+    width: 100%;
+    /*border-bottom: 1px solid var(--sidebar-border-color);*/
+}
+.left-sidebar ul {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+.left-sidebar ul li {
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 15px;
+    cursor: pointer;
+    color: rgb(89, 189, 0);
+}
+.left-sidebar ul li:hover {
+    color: rgb(124, 230, 6);
+}
+.left-sidebar ul li.your-id {
+    cursor: default;
+    color: rgb(80, 80, 80);
+}
+
+/* ---- Right ---- */
+
+.right-sidebar {
+    right: 0px;
+    width: 300px;
+    border-left: 2px solid var(--sidebar-border-color);
+}
+
+/* ---- Center ---- */
+
+.center {
+    position: absolute;
+    top: 0px;
+    left: 200px;
+    right: 300px;
+    bottom: 0px;
+
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.center .main {}
+.center #board-canvas {
+    border: 2px solid rgb(150, 150, 150);
+    box-sizing: border-box;
+    width: 400px;
+    height: 400px;
+}
+.center .main > div > span {
+    font-family: monospace;
+    color: rgb(220, 220, 220);
+}
+.center .btns {
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 2px solid rgb(150, 150, 150);
+    border-right: 2px solid rgb(150, 150, 150);
+    border-left: 2px solid rgb(150, 150, 150);
+    margin-top: -4px;
+    padding: 5px;
+    text-align: center;
+}

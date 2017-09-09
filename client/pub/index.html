@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Tic Tac Toe!</title>
+    <link rel="shortcut icon" href="favicon.png"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/popup.css"/>
+</head>
+<body>
+
+    <div class="container">
+        <div class="left-sidebar">
+            <div class="header">
+                <h2>Your ID: <span id="your-id" class="some-id"></span></h2>
+                <h2>Your Color: <span id="your-color" class="some-color"></span></h2>
+                <br/>
+                <span class="opponent">Opponent: <span id="opponent-id" class="some-id">???</span> <span id="opponent-color" class="some-color"></span></span>
+            </div>
+            <div id="user-overview">
+                <h1>Users:</h1>
+                <ul id="user-list">
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="center">
+            <div class="main">
+                <div>
+                    <span>It's turn of: <span id="current-player" class="some-color"></span></span>
+                </div>
+                <canvas id="board-canvas"></canvas>
+                <div class="btns">
+                    <button id="btn-restart">Restart</button>
+                    <button id="btn-quit">Quit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-sidebar">
+            <!-- <div class="header">
+            </div>
+            <div class="chat">
+
+            </div>
+            <div class="footer">
+
+            </div> -->
+        </div>
+    </div>
+
+    <div id="popup" class="hidden"></div>
+
+    <script type="text/javascript" src="libs/simplepeer.min.js"></script>
+    <script type="text/javascript" src="libs/socket.io.js"></script>
+    <script type="text/javascript" src="multiplayer.bundle.js"></script>
+
+</body>
+</html>

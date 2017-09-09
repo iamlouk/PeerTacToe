@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login: TicTacToe!</title>
+    <link rel="shortcut icon" href="/favicon.png">
+    <style media="screen">
+        html, body {
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .box {
+            border: 1px solid rgb(200, 200, 200);
+            margin: 30px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        form {
+            text-align: left;
+        }
+
+        .errs {
+            text-align: left;
+        }
+        .errs p {
+            font-family: monospace;
+            color: rgb(221, 13, 0);
+            font-size: 1.1rem;
+        }
+
+        a {
+            text-decoration: none;
+            font-family: monospace;
+            color: rgb(5, 101, 142);
+            font-weight: bold;
+        }
+        ul {
+            text-align: left;
+        }
+        h1 {
+            font-family: sans-serif;
+            margin: 0px;
+            padding: 10px;
+        }
+
+        td[colspan="2"] {
+            text-align: center;
+            height: 20px;
+        }
+
+        td.left {
+            font-family: monospace;
+            width: 150px;
+        }
+
+        td.right {
+            width: 200px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 200px;
+        }
+
+        #reg-usernamewarnings, #reg-pwwarnings {
+            color: rgb(198, 51, 17);
+            font-family: sans-serif;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="box errs" style="display: none;">
+            <p></p>
+        </div>
+
+        <form class="box" id="login" action="/login" method="post">
+            <h1>Sign In</h1>
+            <table>
+                <tr>
+                    <td class="left">Username:</td>
+                    <td class="right"><input type="text" name="username" value="" placeholder="username"/></td>
+                </tr>
+                <tr>
+                    <td class="left">Password:</td>
+                    <td class="right"><input type="password" name="password" value=""/></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Sign In"/></td>
+                </tr>
+            </table>
+        </form>
+        <form class="box" id="register" action="/register" method="post">
+            <h1>Sign Up</h1>
+            <table>
+                <tr>
+                    <td class="left">Username:</td>
+                    <td class="right"><input type="text" id="reg-username" name="username" value="" placeholder="username"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="reg-usernamewarnings"></td>
+                </tr>
+                <tr>
+                    <td class="left">Password:</td>
+                    <td class="right"><input type="password" id="reg-pw1" name="password" value=""/></td>
+                </tr>
+                <tr>
+                    <td class="left">Password (Again):</td>
+                    <td class="right"> <input type="password" id="reg-pw2" value=""/></td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="reg-pwwarnings"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Sign In"/></td>
+                </tr>
+            </table>
+        </form>
+
+        <div class="box">
+            <ul>
+                <li><a href="/singleplayer/index.html">TicTacToe Singleplayer</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+
+        (() => {
+            const query = window.location.search
+                .substr(1)
+                .split('&')
+                .map(pair => pair.split('='))
+                .reduce((obj, pair) => {
+                    obj[pair.shift()] = window.unescape(pair.join('='));
+                    return obj;
+                }, {});
+
+            if (query.code) {
+                let msg = ({
+                    '401': 'Unauthorized'
+                })[query.code] || 'Unkown';
+
+
+                let $errbox = document.querySelector('.box.errs');
+                $errbox.querySelector('p').innerText = query.code + ': ' + msg;
+                $errbox.style.display = 'block';
+            }
+
+            const $form = document.querySelector('#register');
+
+            const $username = $form.querySelector('#reg-username');
+            const $usernamewarnings = $form.querySelector('#reg-usernamewarnings');
+
+            const $pw1 = $form.querySelector('#reg-pw1');
+            const $pw2 = $form.querySelector('#reg-pw2');
+            const $pwwarings = $form.querySelector('#reg-pwwarnings');
+
+            const isValidUsername = (username) => (typeof username == 'string') && username.length > 2 && username.length < 20 && (/[a-z0-9_-]/i).test(username);
+            const isValidPassword = (password) => (typeof password == 'string') && password.length > 6 && password.length < 128;
+
+            $username.addEventListener('keyup', (event) => {
+                if (!isValidUsername($username.value)) {
+                    $usernamewarnings.innerText = 'invalid username';
+                } else {
+                    $usernamewarnings.innerText = '';
+                }
+            }, false);
+
+            const onKeyup = (event) => {
+                if (!isValidPassword($pw1.value)) {
+                    $pwwarings.innerText = 'invalid password';
+                } else if ($pw1.value !== $pw2.value) {
+                    $pwwarings.innerText = 'password do not match';
+                } else {
+                    $pwwarings.innerText = '';
+                }
+            };
+
+            $pw1.addEventListener('keyup', onKeyup, false);
+            $pw2.addEventListener('keyup', onKeyup, false);
+        })();
+
+    </script>
+
+</body>
+</html>

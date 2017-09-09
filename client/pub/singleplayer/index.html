@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tic Tac Toe!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <style media="screen">
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+    background-color: rgb(40, 40, 40);
+  }
+
+  body {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  #board-canvas {
+    border: 2px solid rgb(150, 150, 150);
+	box-sizing: border-box;
+	width: 300px;
+	height: 300px;
+  }
+
+  .wrapper > div > span {
+    font-family: monospace;
+    color: rgb(220, 220, 220);
+  }
+
+  #current-player {
+    width: 1em;
+    height: 1em;
+    border-radius: 0.5em;
+    background-color: white;
+    display: inline-block;
+    border: 1px solid rgb(0, 0, 0);
+  }
+
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div>
+      <span>It's turn of: <span id="current-player"></span></span>
+    </div>
+    <canvas id="board-canvas"></canvas>
+    <div class="stats">
+      <button id="btn-new-game">New Game!</button>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../singleplayer.bundle.js"></script>
+</body>
+</html>
